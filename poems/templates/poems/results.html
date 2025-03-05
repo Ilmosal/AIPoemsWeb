@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'poems/style.css' %}">
+
+<title>Poem site</title>
+<h1>Human or ChatGPT</h1>
+Your total accuracy was: {{accuracy}}%
+<form action="{% url 'index' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" name="back" value="Back">
+</form>
+{% for poem, color, ans_text in poems %}
+    <h2 style="color:{{color}}">Poem by {{poem.author}} - {{ans_text}}</h2>
+    {{ poem.poem_text | linebreaksbr }}
+{% endfor %}
+

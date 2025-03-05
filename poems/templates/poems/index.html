@@ -1,0 +1,37 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'poems/style.css' %}">
+
+<title>Human or ChatGPT</title>
+<body>
+<h1>Human or ChatGPT</h1>
+Welcome to the game of "Is it human or ChatGPT".<br>
+You will be shown poems that are written either by (human) poets or generated with ChatGPT.
+<br><br>
+To proceed, please choose the language below. You can also decide whether you want to see the author of the poem after every guess you make.
+<br><br>
+If you want to read more information on the project, browse the corpora of poems or  download a version that can be run locally, click <a href=https://github.com/ViljaVellamo/HumanOrChatGPT>here. </a>
+<br><br>
+Good luck!
+</body>
+{% if error_msg %}<br><p><strong>{{ error_msg }}</strong></p>{% endif %}
+<hr>
+<br>
+<form action="{% url 'start' %}" method="post">
+    {% csrf_token %}
+    <b>Language: </b>
+    <select name="language">
+        {% for language in poem_langs %}
+            <option>{{language}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <b>Show results after answer: </b>
+    <input type="checkbox" name="show_res">
+    <br><br>
+    <!--
+    <b>Questionnaire Key</b> 
+    <input type="text" name="questionnaire" size=20>
+    Leave empty if you just want to attempt the test
+    <br><br> -->
+    <input type="submit" name="start" value="Start">
+</form>

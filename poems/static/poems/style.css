@@ -1,0 +1,21 @@
+html { background-color: coral; }
+body {
+    border-radius: 25px;
+     background-color: ffebe7;
+     margin-top: 50px;
+     margin-bottom: 100px;
+     margin-right: 150px;
+     margin-left: 150px; 
+     padding: 50px;
+}
+input[type=submit]{
+    border-color: coral;
+    background-color: #ffc7b3 ;
+    border-width: medium;
+    border-radius:5px;
+    padding: 15px, 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}

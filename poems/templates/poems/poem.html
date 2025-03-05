@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'poems/style.css' %}">
+
+<title>Human or ChatGPT</title>
+<h1>Human or ChatGPT</h1>
+{% if show_res %}
+Your total accuracy is: {{accuracy}}%
+<hr>
+{% endif %}
+{{cur_poem.poem_text|linebreaksbr}}
+<br></br>
+<form action="{% url 'next' title %}" method="post">
+    {% csrf_token %}
+    <input type="submit" name="ai" value="AI">
+    <input type="submit" name="human" value="Human">
+</form>
+<form action="{% url 'index' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" name="back" value="Back to start">
+</form>
+{% if show_res %}
+    {% for poem, color, ans_text in prev_poems %}
+    <h2 style="color:{{color}}">Poem by {{poem.author}} - {{ans_text}}</h2>
+        {{ poem.poem_text | linebreaksbr }}
+    {% endfor %}
+{% endif %}
+
